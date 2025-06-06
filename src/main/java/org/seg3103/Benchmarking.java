@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @State(Scope.Benchmark)
-@BenchmarkMode(Mode.AverageTime)
+@BenchmarkMode(Mode.AverageTime) //Throughput(seconds), AverageTime(milliseconds), SampleTime(microseconds), Single Shot Time(milliseconds)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Warmup(iterations = 3)
 @Measurement(iterations = 5)

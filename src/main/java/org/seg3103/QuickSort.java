@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @State(Scope.Benchmark)
-@BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@BenchmarkMode(Mode.Throughput) //Throughput(seconds), AverageTime(milliseconds), SampleTime(microseconds), Single Shot Time(milliseconds)
+@OutputTimeUnit(TimeUnit.SECONDS)
 @Warmup(iterations = 3)
 @Measurement(iterations = 5)
 public class QuickSort {
@@ -28,8 +28,9 @@ public class QuickSort {
 
     @Benchmark
     public List<Integer> sortWithSpecifiedSortingAlgorithm() {
-        quickSort(numbers, 0, numbers.size() - 1); // Benchmark only the merge sort operation
-        return numbers;
+        List<Integer> inputCopy = new ArrayList<>(numbers);
+        quickSort(inputCopy, 0, inputCopy.size() - 1);
+        return inputCopy;
     }
 
     static void quickSort(List<Integer> list, int low, int high) {
